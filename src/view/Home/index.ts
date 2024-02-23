@@ -1,0 +1,5 @@
+export {default as Hero} from './Hero'
+export {default as SupportChain} from './SupportChain'
+export {default as Investor} from './Investor'
+export {default as News} from './News'
+export {default as Partner} from './Partner'
