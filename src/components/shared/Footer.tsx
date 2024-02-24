@@ -33,8 +33,8 @@ const FooterLaunch = () => {
   return (
     <section className="flex  gap-10">
       {footerData.map((data, index) => (
-        <div className="">
-          <Text as="h5" key={index}>
+        <div className="" key={index}>
+          <Text as="h5" >
             {data.title}
           </Text>
           <div className="mt-4">
@@ -73,27 +73,27 @@ export const SocialMedia =({children}:{children:React.ReactNode})=>{
 export const media =[
   {
     path:'',
-    icon:<AiFillTwitterCircle className="text-normal-300 text-2xl  transition-all delay-100 opacity-15 ease-in-out hover:text-light-300 hover:translate-y-2 duration-200 hover:scale-100" text-2xl/>,
+    icon:<AiFillTwitterCircle className="text-normal-300 text-lg  transition-all delay-100 opacity-15 ease-in-out hover:text-light-300 hover:translate-y-2 duration-200 hover:scale-100"/>,
     id:1
   },
   {
     path:'',
-    icon:<FaDiscord className="text-normal-300 text-2xl  transition-all delay-100 opacity-15 ease-in-out hover:text-light-300 hover:translate-y-2 duration-200 hover:scale-100" text-2xl/>,
+    icon:<FaDiscord className="text-normal-300 text-lg  transition-all delay-100 opacity-15 ease-in-out hover:text-light-300 hover:translate-y-2 duration-200 hover:scale-100"/>,
     id:1
   },
   {
     path:'',
-    icon:<FaMediumM className="text-normal-300 text-2xl  transition-all delay-100 opacity-15 ease-in-out hover:text-light-300 hover:translate-y-2 duration-200 hover:scale-100" text-2xl/>,
+    icon:<FaMediumM className="text-normal-300 text-lg  transition-all delay-100 opacity-15 ease-in-out hover:text-light-300 hover:translate-y-2 duration-200 hover:scale-100"/>,
     id:1
   },
   {
     path:'',
-    icon:<FaTelegramPlane className="text-normal-300 text-2xl  transition-all delay-100 opacity-15 ease-in-out hover:text-light-300 hover:translate-y-2 duration-200 hover:scale-100" text-2xl/>,
+    icon:<FaTelegramPlane className="text-normal-300 text-lg  transition-all delay-100 opacity-15 ease-in-out hover:text-light-300 hover:translate-y-2 duration-200 hover:scale-100"/>,
     id:1
   },
   {
     path:'',
-    icon:<FaLinkedinIn className="text-normal-300 text-2xl  transition-all delay-100 opacity-15 ease-in-out hover:text-light-300 hover:translate-y-2 duration-200 hover:scale-100" text-2xl />,
+    icon:<FaLinkedinIn className="text-normal-300 text-lg  transition-all delay-100 opacity-15 ease-in-out hover:text-light-300 hover:translate-y-2 duration-200 hover:scale-100" />,
     id:1
   },
 ]

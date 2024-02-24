@@ -3,7 +3,7 @@ import { clx } from "../../components/custom/clx";
 import Text from "../../components/custom/Text";
 import CustomButton from "../../components/custom/CustomButton";
 import ModalWrapper from "../../components/custom/ModalWrapper";
-import BuyToken from "../../components/shared/BuyToken";
+import BuyToken from "../Buy/BuyToken";
 
 const Board = () => {
   const [isModalOpen, setModalOpen] = React.useState<boolean>(false);
@@ -37,7 +37,7 @@ const Board = () => {
       </div>
       <ModalWrapper 
        isOpen={isModalOpen} handleModalClose={()=>setModalOpen(false)}>
-        <BuyToken/>
+        <BuyToken isModal/>
       </ModalWrapper>
     </section>
   );

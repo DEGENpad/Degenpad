@@ -5,7 +5,6 @@ import { clx } from "./clx";
 import Text from "./Text";
 import { InputProps } from "../../type";
 
-
 export default function Input({
   type = "text",
   disabled,
@@ -19,23 +18,17 @@ export default function Input({
   placeholder,
   inputClass,
   name,
-  variant = "primary",
   background,
   borderColor,
   iconLeft,
   iconRight,
   classname,
   children,
-
-}:InputProps) {
+}: InputProps) {
   const [isPasswordVisible, setPasswordVisible] = React.useState(false);
   const classes = clx("flex flex-col space-y-2 w-full", classname);
   const inputClasses = clx(
-    `flex items-center select-none space-x-3 border-${borderColor} rounded-[8px] py-[15px] px-[20px]`,
-    variant === "primary" && "bg-[#E6E6E9] dark:bg-[#1B1D26]",
-    variant === "secondary" && "bg-secondary-dark",
-    variant === "outlined" && "bg-transparent border-[2px]  border-gray-400",
-    variant === "white" && "bg-white",
+    `flex items-center select-none space-x-3 border-${borderColor} ${borderColor && 'border'} rounded-[8px] py-[15px] px-[20px]`,
     inputClass
   );
   return (
@@ -54,16 +47,22 @@ export default function Input({
         <input
           name={name}
           id={name}
-
           type={type === "password" && isPasswordVisible ? "text" : type}
           defaultValue={defaultValue}
           value={value}
-          onChange={onchange}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+            console.log({target:e.target});
+            console.log({currentTarget:e.currentTarget});
+            console.log({timeStamp:e.timeStamp});
+            console.log({type:e.type});
+            console.log(e);
+
+            onchange && onchange(e.target.value);
+          }}
           onBlur={onblur}
           onFocus={onfocus}
           placeholder={placeholder}
-          className={` flex-1 font-gantari font-[500] outline-none placeholder:text-[14px] lg:placeholder:text-base bg-transparent ${variant === "secondary" && "placeholder-white"
-            } dark:text-[#e6e6e9]`}
+          className={` flex-1 font-poppins font-[500]  outline-none placeholder:text-[14px] lg:placeholder:text-base bg-transparent  dark:text-black`}
           disabled={disabled}
         />
         {/* Right Icon */}

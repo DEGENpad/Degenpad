@@ -51,6 +51,48 @@ export const chainData:DataProps[]=[
         image:IMG.bsc
     },
 ] 
+export const NewsData:DataProps[]=[
+    {
+        id:1,
+        label:'',
+        image:IMG.news
+    },
+    {
+        id:1,
+        label:'',
+        image:IMG.news
+    },
+    {
+        id:1,
+        label:'',
+        image:IMG.news
+    },
+    {
+        id:1,
+        label:'',
+        image:IMG.news
+    },
+    {
+        id:1,
+        label:'',
+        image:IMG.news
+    },
+    {
+        id:1,
+        label:'',
+        image:IMG.news
+    },
+    {
+        id:1,
+        label:'',
+        image:IMG.news
+    },
+    {
+        id:1,
+        label:'',
+        image:IMG.news
+    },
+] 
 
 export const InvestorData:DataProps[]=[
     {
@@ -222,4 +264,41 @@ export const footerData :FooterData[]=[
         ]
     }
     
+]
+export const BackedData :DataProps[]=[
+    {
+        id:1,
+        label:'',
+        image:IMG.part1
+    },
+    {
+        id:1,
+        label:'',
+        image:IMG.part1,
+    },
+    {
+        id:1,
+        label:'',
+        image:IMG.part3
+    },
+    {
+        id:1,
+        label:'',
+        image:IMG.part4
+    },
+    {
+        id:1,
+        label:'',
+        image:IMG.part5
+    },
+    {
+        id:1,
+        label:'',
+        image:IMG.part6
+    },
+    {
+        id:1,
+        label:'',
+        image:IMG.part7
+    },
 ]

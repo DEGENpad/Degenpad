@@ -11,7 +11,7 @@ type ButtonProps = {
 };
 
 const CustomButton = ({
-  disabled,
+  disabled=false,
   isLoading,
   label = 'submit',
   className,

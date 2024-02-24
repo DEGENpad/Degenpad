@@ -15,6 +15,9 @@ import Partners from "./pages/PartnersPage";
 import Tier from "./pages/TierPage";
 import { All } from "./view/project";
 import AllProjectPage from "./pages/AllProjectPage";
+import BuyPage from "./pages/BuyPage";
+import LaunchContext from "./hook/LaunchContext";
+
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -24,11 +27,15 @@ const router = createBrowserRouter(
       <Route path="partner" element={<Partners />} />
       <Route path="tier" element={<Tier />} />
       <Route path="allproject" element={<AllProjectPage/>} />
+      <Route path="buy" element={<BuyPage/>} />
     </Route>
   )
 );
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+     <LaunchContext>
+       <RouterProvider router={router} />
+     </LaunchContext>
+    
   </React.StrictMode>
 );

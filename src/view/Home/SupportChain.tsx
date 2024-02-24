@@ -6,7 +6,7 @@ import { chainData } from '../../constant'
 
 const SupportChain = () => {
   return (
-    <section className='bg-light-200 h-60 w-full mt-10 flex flex-col justify-center py-5 '>
+    <section className='bg-light-200 w-full mt-10 flex flex-col justify-center pt-5  pb-10'>
       <Text as='h2' className='text-center font-bold text-2xl my-8'>Supported Chains</Text>
       <CustomSlider show={7} >
         {
