@@ -9,13 +9,15 @@ const ParticipateCard = ({
   label = "Participate",
   image = true,
   text,
-  onclick
+  onclick,
+  schedule
 
 }: {
   label?: string;
   image?: boolean;
   text?:string,
-  onclick?:()=>void
+  onclick?:()=>void,
+  schedule?:string
 }) => {
   return (
     <section className="w-full border border-3 border-[#D9D9D9] rounded-2xl shadow-[0px 0px 5px 0px #00000040]">
@@ -31,7 +33,7 @@ const ParticipateCard = ({
         </div>
       )}
       <div className="text-center h-8 bg-dark-400 w-full text-white-100 py-1">
-        Ends in: 1d : 22h : 33m : 5s
+       {schedule?schedule:'Ends in: 1d : 22h : 33m : 5s'} 
       </div>
       <div className="p-6">
         <div className="flex items-center gap-5">
