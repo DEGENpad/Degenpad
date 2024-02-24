@@ -10,18 +10,18 @@ const Board = () => {
   const classes = clx("w-[93%] lg:w-[90%] flex flex-col mx-auto pt-8");
   return (
     <section className={classes}>
-      <div className="flex items-center px-1 md:px-10">
-        <div className="bg-light-300 flex-1 flex flex-col justify-center h-[96px] rounded-l-full">
-          <Text as="h6" className="font-bold text-normal-300 ps-6">
+      <div className="flex flex-col sm:flex-row justify-start sm:items-center px-1 md:px-10">
+        <div className="bg-light-300 flex-1 flex flex-col justify-start sm:justify-center h-[96px] rounded-md sm:rounded-s-full">
+          <Text as="h6" className="font-bold text-normal-300 ps-6 py-2  ">
             YOUR TIER:
           </Text>
         </div>
-        <div className="bg-light-100 flex-1 px-2 h-[96px] flex items-center justify-center">
+        <div className="bg-light-100 flex-1 px-2 py-2 h-[96px] flex justify-start sm:items-center sm:justify-center">
           <Text as="h6" className="text-sm text-black">
             Snapshot Tier Has Ended
           </Text>
         </div>
-        <div className="bg-light-300 flex-1 flex flex-col justify-center items-end pe-6 h-[96px] rounded-r-full">
+        <div className="bg-light-300 flex-1 flex flex-col justify-center items-start sm:items-end ps-5 py-2 sm:py-0 sm:pe-6 h-[96px] rounded-md sm:rounded-r-full">
           <Text as="h6" className="text-normal-300 text-sm">
             Stake SPT
           </Text>
