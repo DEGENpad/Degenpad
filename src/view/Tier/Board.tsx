@@ -30,7 +30,7 @@ const Board = () => {
           </Text>
           <CustomButton
             label="stake"
-            onClick={()=>setModalOpen(true)}
+            onClick={()=>{}}
             className="bg-normal-300 hover:bg-normal-100 rounded-md inline text-white-100 px-7 py-1 mt-2 transition duration-150 ease-in-out"
           />
         </div>

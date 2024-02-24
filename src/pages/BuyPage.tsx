@@ -15,7 +15,7 @@ const BuyPage = () => {
 
   return (
       <>
-        <BuyToken/>
+        <BuyToken isModal={false}/>
       </>
   );
 }

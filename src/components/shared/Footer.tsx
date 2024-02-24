@@ -11,7 +11,7 @@ const Footer = () => {
     "w-[93%] lg:w-[90%] flex flex-col md:flex-row justify-between  mx-auto pt-8 py-5"
   );
   return (
-    <footer className={` bg-[#000954] text-white-100 mt-10`}>
+    <footer className={` bg-[#000954]  mt-10`}>
       <div className={`${classes}`}>
         <FooterLogo />
         <FooterLaunch />
@@ -31,13 +31,13 @@ export default Footer;
 
 const FooterLaunch = () => {
   return (
-    <section className="flex  gap-10">
+    <section className="flex flex-col sm:flex-row gap-10  text-white-200">
       {footerData.map((data, index) => (
-        <div className="" key={index}>
-          <Text as="h5" >
+        <div className="pt-10 sm:mt-0" key={index}>
+          <Text as="h5" className="font-bold">
             {data.title}
           </Text>
-          <div className="mt-4">
+          <div className="mt-4 text-white-300">
             {data.content.map((data, index) => (
               <Text as="h6" key={index}>
                 {data}
@@ -51,7 +51,7 @@ const FooterLaunch = () => {
 };
 const FooterLogo = () => {
   return (
-    <section>
+    <section className="text-white-200">
       <img src={IMG.logodown} alt="" className="w-20 h-20" />
       <Text as="span">Contact us:</Text>
       <Text as="p">For business: hello@seapad.</Text>
@@ -63,7 +63,7 @@ const FooterLogo = () => {
 
 export const SocialMedia =({children}:{children:React.ReactNode})=>{
   return(
-    <section className="flex gap-4 mt-5">
+    <section className="flex gap-4 mt-5 text-white-300 py-3">
       {children}
     </section>
   )
@@ -73,27 +73,27 @@ export const SocialMedia =({children}:{children:React.ReactNode})=>{
 export const media =[
   {
     path:'',
-    icon:<AiFillTwitterCircle className="text-normal-300 text-lg  transition-all delay-100 opacity-15 ease-in-out hover:text-light-300 hover:translate-y-2 duration-200 hover:scale-100"/>,
+    icon:<AiFillTwitterCircle  className="text-[30px] text-white-500 dark:text-white "/>,
     id:1
   },
   {
     path:'',
-    icon:<FaDiscord className="text-normal-300 text-lg  transition-all delay-100 opacity-15 ease-in-out hover:text-light-300 hover:translate-y-2 duration-200 hover:scale-100"/>,
+    icon:<FaDiscord  className="text-[30px] text-white-500 dark:text-white"/>,
     id:1
   },
   {
     path:'',
-    icon:<FaMediumM className="text-normal-300 text-lg  transition-all delay-100 opacity-15 ease-in-out hover:text-light-300 hover:translate-y-2 duration-200 hover:scale-100"/>,
+    icon:<FaMediumM  className="text-[30px] text-white-500 dark:text-white"/>,
     id:1
   },
   {
     path:'',
-    icon:<FaTelegramPlane className="text-normal-300 text-lg  transition-all delay-100 opacity-15 ease-in-out hover:text-light-300 hover:translate-y-2 duration-200 hover:scale-100"/>,
+    icon:<FaTelegramPlane  className="text-[30px] text-white-500 dark:text-white"/>,
     id:1
   },
   {
     path:'',
-    icon:<FaLinkedinIn className="text-normal-300 text-lg  transition-all delay-100 opacity-15 ease-in-out hover:text-light-300 hover:translate-y-2 duration-200 hover:scale-100" />,
+    icon:<FaLinkedinIn  className="text-[30px] text-white-500 dark:text-white" />,
     id:1
   },
 ]

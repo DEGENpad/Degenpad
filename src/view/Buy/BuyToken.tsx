@@ -8,7 +8,7 @@ const BuyToken = ({isModal= false}:{isModal?:boolean}) => {
   const [input, setInput] = React.useState<string>('');
 
   return (
-    <section className={"flex justify-center items-center " + isModal && 'bg-red-100 px-10 rounded-2xl'}>
+    <section className={`flex justify-center items-center ${ isModal && 'bg-red-100 px-10 rounded-2xl'}`}>
       <div className="border border-normal-100 w-full max-w-md p-8 rounded-2xl mt-32 mb-20">
         <CustomInput
           type="number"
