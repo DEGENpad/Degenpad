@@ -1,17 +1,21 @@
 import React, { useContext, useEffect } from 'react';
-import { launchProvider } from '../hook/LaunchContext';
+// import { launchProvider } from '../Context/LaunchContext';
 import { useNavigate } from 'react-router-dom';
 import BuyToken from '../view/Buy/BuyToken';
+import { useAccount } from 'wagmi';
+
 
 const BuyPage = () => {
   const navigate = useNavigate();
-  const { isWallet, setIsWallet } = useContext(launchProvider);
+  const {isConnected } = useAccount()
 
-  useEffect(() => {
-    if (!isWallet) {
-      navigate('/');
-    }
-  }, [isWallet, navigate]);
+ 
+
+  // useEffect(() => {
+   
+  //     navigate('/');
+    
+  // }, [ navigate]);
 
   return (
       <>

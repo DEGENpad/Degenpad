@@ -3,10 +3,11 @@ import * as IMG from '../../images';
 import { Link, NavLink } from 'react-router-dom';
 import Text from '../custom/Text';
 import { clx } from '../custom/clx';
-import { launchProvider } from '../../hook/LaunchContext';
+// import { launchProvider } from '../../Context/LaunchContext';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { CgMenuRight } from "react-icons/cg";
 import { MdCancel } from 'react-icons/md';
+import { ConnectButton } from '@rainbow-me/rainbowkit';
 
 const NavbarLink = ({ closeMenu }:any) => {
   const tabs = [
@@ -47,7 +48,7 @@ const NavbarLink = ({ closeMenu }:any) => {
 };
 
 const Header = () => {
-  const { isWallet, setIsWallet } = useContext(launchProvider);
+
   const classes = clx('w-[93%] lg:w-[90%] mx-auto pt-8');
   const [toggle, setToggle] = React.useState<boolean>(false);
 
@@ -65,7 +66,7 @@ const Header = () => {
       </div>
 
       <div className='flex gap-3 md:gap-0'>
-        <Text
+        {/* <Text
           as='h1'
           weight='medium'
           className='bg-light-300 p-2 rounded-md hover:bg-light-200'
@@ -74,7 +75,9 @@ const Header = () => {
           }}
         >
           {isWallet ? 'ox2' : 'Connect Wallet'}
-        </Text>
+        </Text> */}
+        <ConnectButton />
+
         <div className='p-2 text-blue-500 md:hidden relative' onClick={() => setToggle(!toggle)}>
           {
             toggle?

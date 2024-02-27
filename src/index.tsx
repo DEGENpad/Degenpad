@@ -16,9 +16,39 @@ import Tier from "./pages/TierPage";
 import { All } from "./view/project";
 import AllProjectPage from "./pages/AllProjectPage";
 import BuyPage from "./pages/BuyPage";
-import LaunchContext from "./hook/LaunchContext";
+// import {LaunchContext} from "./Context/LaunchContext";
+
+import '@rainbow-me/rainbowkit/styles.css';
+import {
+  getDefaultConfig,
+  RainbowKitProvider,
+} from '@rainbow-me/rainbowkit';
+import { WagmiProvider } from 'wagmi';
+import {
+  mainnet,
+  polygon,
+  optimism,
+  arbitrum,
+  base,
+  zora,
+  sepolia
+} from 'wagmi/chains';
+import {
+  QueryClientProvider,
+  QueryClient,
+} from "@tanstack/react-query";
+// import LaunchContext from "./Context/LaunchContext";
 
 
+const config = getDefaultConfig({
+  appName: 'My RainbowKit App',
+  projectId: 'YOUR_PROJECT_ID',
+  chains: [mainnet, sepolia, polygon, optimism, arbitrum, base, zora],
+  ssr: true, // If your dApp uses server side rendering (SSR)
+});
+
+
+const queryClient = new QueryClient();
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Layout />}>
@@ -33,9 +63,15 @@ const router = createBrowserRouter(
 );
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-     <LaunchContext>
+       <WagmiProvider config={config}>
+      <QueryClientProvider client={queryClient}>
+        <RainbowKitProvider>
+     {/* <LaunchContext> */}
        <RouterProvider router={router} />
-     </LaunchContext>
+     {/* </LaunchContext> */}
+     </RainbowKitProvider>
+      </QueryClientProvider>
+    </WagmiProvider>
     
   </React.StrictMode>
 );
