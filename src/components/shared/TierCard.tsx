@@ -6,6 +6,7 @@ import { Raise, TierData } from "../../constant";
 import CustomButton from "../custom/CustomButton";
 import ProgressBar from "./Progress";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
+import { useAccount } from "wagmi";
 
 const TierCard = ({
   label = "Participate",
@@ -22,6 +23,7 @@ const TierCard = ({
   schedule?: string,
   className?: string
 }) => {
+  const {isConnected} = useAccount();
   return (
     <section className={`w-full border border-3 border-[#D9D9D9] rounded-2xl shadow-[0px 0px 5px 0px #00000040] ${className}`}>
       {image ? (
@@ -86,12 +88,15 @@ const TierCard = ({
         </>
       )}
       <div className="px-3 pb-3">
-        {/* <CustomButton
-          label={label}
-          onClick={onclick}
-          className="rounded-full text-whiteDark-100 w-full mt-8 px-24 py-[10px]  bg-gradient-to-t from-normal-100 to-dark-400 hover:bg--100"
-        /> */}
+      {
+          isConnected ?
+          <CustomButton
+            label={label}
+            onClick={onclick}
+            className="rounded-full text-whiteDark-100 w-full mt-8 px-24 py-[10px]  bg-gradient-to-t from-normal-100 to-dark-400 hover:bg--100"
+          /> :
         <ConnectButton/>
+        }
       </div>
 
     </section>

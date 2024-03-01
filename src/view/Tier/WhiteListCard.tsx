@@ -37,7 +37,7 @@ const WhiteListCard = () => {
           className=""
         />
         <TierCard
-  // label={isConnected ? "Buy" : "}
+          label={isConnected ? "Buy" : "connect wallet"}
   image={false}
   text="TIER - WHITELIST"
   onclick={() => {
