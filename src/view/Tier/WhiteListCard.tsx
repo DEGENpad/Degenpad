@@ -1,58 +1,47 @@
-import React, {  useEffect } from "react";
+import React, { useEffect } from "react";
 import { clx } from "../../components/custom/clx";
 import TierCard from "../../components/shared/TierCard";
-// import { launchProvider } from "../../Context/LaunchContext";
 import { useNavigate } from "react-router-dom";
 import { useAccount } from "wagmi";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 
-const WhiteListCard = () => {
-  // const { isWallet, setIsWallet } = useContext(launchProvider);
-  const {isConnected} = useAccount();
+const WhiteListCard = ({ singleTier }: { singleTier: any }) => {
+  const { isConnected } = useAccount();
   const navigate = useNavigate();
+  console.log(singleTier);
 
-  // useEffect(() => {
-  //   // if (isConnected) {
-  //     navigate("/buy");
-  //   }
-  // }, []);
+  useEffect(() => {
+    // Uncomment the code below if you want to navigate when not connected
+    // if (!isConnected) {
+    //   navigate("/");
+    // }
+  }, []);
+
   const classes = clx("w-[93%] lg:w-[90%] flex flex-col mx-auto pt-8");
+
   return (
     <section className={classes}>
       <div className="flex flex-col md:flex-row justify-between items-center gap-9 px-1 md:px-10 lg:px-28 xl:px-40">
-        <TierCard
-          label={isConnected ? "Buy" : "connect wallet"}
-          image={false}
-          text="TIER - PUBLIC SALE "
-          onclick={() => {
-            if (!isConnected) {
-              <ConnectButton/>
-              console.log("Please connect your wallet");
-             
-            } else {
-              navigate("/buy");
-              
-            }
-          }}
-          className=""
-        />
-        <TierCard
-          label={isConnected ? "Buy" : "connect wallet"}
-  image={false}
-  text="TIER - WHITELIST"
-  onclick={() => {
-      <ConnectButton/ >
-    
-    if (isConnected) {
-      navigate("/buy");
-    } else {
-     console.log("Please connect wallet");
-    }
-    
-  }}
-
-/>
-
+        {singleTier?.map((tier: any, index: number) => (
+          <TierCard
+            label={"Buy"}
+            text="TIER - PUBLIC SALE "
+            onclick={() => navigate("/buy")}
+            className=""
+            singleTier={tier}
+            key={index}
+          />
+        ))}
+        {singleTier?.map((tier: any, index: number) => (
+          <TierCard
+            label={"Buy"}
+            text="TIER - WHITELIST"
+            onclick={() => navigate("/buy")}
+            className=""
+            singleTier={tier}
+            key={index}
+          />
+        ))}
       </div>
     </section>
   );
