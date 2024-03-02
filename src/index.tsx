@@ -37,6 +37,7 @@ import {
   QueryClientProvider,
   QueryClient,
 } from "@tanstack/react-query";
+import SingleTier from "./pages/SingleTier";
 // import LaunchContext from "./Context/LaunchContext";
 
 
@@ -55,7 +56,10 @@ const router = createBrowserRouter(
       <Route index element={<App />} />
       <Route path="claim" element={<Claim />} />
       <Route path="partner" element={<Partners />} />
-      <Route path="tier" element={<Tier />} />
+      <Route path="tier">
+      <Route index element={<Tier/>} />
+      <Route path=":id" element={<SingleTier/>} />
+      </Route>
       <Route path="allproject" element={<AllProjectPage/>} />
       <Route path="buy" element={<BuyPage/>} />
     </Route>
