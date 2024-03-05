@@ -23,7 +23,7 @@ const NavbarLink = ({ closeMenu }:any) => {
     },
     {
       label: 'Partners',
-      path: '/partner',
+      path: '',
       id: 1,
     },
   ];
@@ -37,7 +37,7 @@ const NavbarLink = ({ closeMenu }:any) => {
           className={({isActive})=>`${isActive?" md:text-dark-100 p-2 hover:text-normal-100 "
           :
           " md:text-normal-100 p-2 hover:text-dark-100"
-        } text-white-200 cursor-pointer`}
+        } text-white-200 cursor-pointer text-lg font-bold`}
           onClick={closeMenu}
         >
           {tab.label}
@@ -49,7 +49,7 @@ const NavbarLink = ({ closeMenu }:any) => {
 
 const Header = () => {
 
-  const classes = clx('w-[93%] lg:w-[90%] mx-auto pt-8');
+  const classes = clx('w-[93%] lg:w-[90%] mx-auto');
   const [toggle, setToggle] = React.useState<boolean>(false);
 
   const closeMenu = () => {
@@ -57,13 +57,21 @@ const Header = () => {
   };
 
   return (
-    <header className={`flex justify-between items-center ${classes}`}>
+    <section style={{backgroundColor: "rgb(230, 232, 253)" }} className ="flex-justify-center items-center py-5">
+    <header className={`flex justify-between items-center  ${classes}`}>
+      
       <Link to={'/'}>
-        <img src={IMG.Logo} alt='Logo' className='object-cover h-[20px]' />
+        <img src={IMG.Logo} alt='Logo' className='object-cover h-[50px]' />
       </Link>
       <div className='p-2 text-red-500 hidden md:flex '>
         <NavbarLink closeMenu={closeMenu} />
       </div>
+       
+       <div className='flex gap-0 md:gap-0'>
+       <Link style={{background: "#0119EF", fontSize: "14px", "color": "white", padding:"15px 20px", borderRadius: "5px"}}  to="/tier">Buy OBJ<span style={{marginLeft: "30px"}}>$0.003</span></Link>
+       </div>
+      
+
 
       <div className='flex gap-3 md:gap-0'>
         {/* <Text
@@ -92,6 +100,7 @@ const Header = () => {
       </div>
       
     </header>
+    </section>
   );
 };
 

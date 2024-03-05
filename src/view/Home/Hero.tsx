@@ -31,10 +31,10 @@ const Hero = () => {
 
   return (
     <section className={'text-center mt-10 container' + classes}>
-      <Text className='text-xl' as='h2' weight='medium'>
+      <Text className='text-4xl font-bold' as='h1' weight='medium'>
         Where Projects Set Sail and Make Waves
       </Text>
-      <Text className='text-lg' as='h4' weight='medium'>
+      <Text className='text-lg' as='h5' weight='medium'>
         The fast-growing Defi-integrated Launchpad on emerging blockchains
       </Text>
       <div className='grid grid-cols-1 sm:grid-cols-3 items-center rounded-[12px] bg-light-100 px-5 border border-5 border-white-400 py-2 mt-10 text-normal-100 font-bold '>

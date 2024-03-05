@@ -14,7 +14,7 @@ const Layout = ({children}:{children?:React.ReactNode}) => {
         <SupportChain/>
         <Investor/>
         <News/>
-        <Partner/>
+        {/* <Partner/> */}
         <Footer/>
     </section>
   )

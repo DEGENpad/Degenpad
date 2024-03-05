@@ -12,9 +12,9 @@ interface ParticipateCardProps {
     tokenName: string;
     SLMAmount: number;
     tokenPrice: number;
-    maximumPurchase: number;
+    // maximumPurchase: number;
     projectDescription: string;
-    totalRaised: string;
+    targetBalance: string;
     status: string;
  };
 }
@@ -25,7 +25,8 @@ const ParticipateCard: React.FC<ParticipateCardProps> = ({
  onclick,
  allPool,
 }) => {
- const { logo, dateOfCompletion, tokenName, SLMAmount, tokenPrice, maximumPurchase, projectDescription, totalRaised, status } = allPool || {};
+//  const { logo, dateOfCompletion, tokenName, SLMAmount, tokenPrice, maximumPurchase, projectDescription, targetBalance, status } = allPool || {};
+  const { logo, dateOfCompletion, tokenName, SLMAmount, tokenPrice, projectDescription, targetBalance, status } = allPool || {};
 
  return (
     <section className="w-full border border-3 border-[#D9D9D9] rounded-2xl shadow-[0px 0px 5px 0px #00000040] flex flex-col h-full">
@@ -35,7 +36,7 @@ const ParticipateCard: React.FC<ParticipateCardProps> = ({
         <img
         src={logo}
         alt={`Logo for ${tokenName}`}
-        className="w-[150px] h-[150px] object-cover p-0"
+        className="w-[400px] h-[150px] md:[200px] object-cover p-0"
         // style={{ width: '150px', height: '150px', objectFit: 'cover' }}
         />
         )}
@@ -65,7 +66,7 @@ const ParticipateCard: React.FC<ParticipateCardProps> = ({
             Fundraising Goal:
           </Text>
           <Text as="span" weight="normal">
-            {totalRaised}
+            {targetBalance}
           </Text>
           <Text as="p" weight="extrabold" className="text-start">
             SLMAmount:
@@ -79,12 +80,12 @@ const ParticipateCard: React.FC<ParticipateCardProps> = ({
           <Text as="span" weight="normal">
             {tokenPrice}
           </Text>
-          <Text as="p" weight="extrabold" className="text-start">
+          {/* <Text as="p" weight="extrabold" className="text-start">
             Maximum Purchase:
-          </Text>
-          <Text as="span" weight="normal">
+          </Text> */}
+          {/* <Text as="span" weight="normal">
             {maximumPurchase}
-          </Text>
+          </Text> */}
         </div>
       </div>
 

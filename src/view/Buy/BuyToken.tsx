@@ -6,6 +6,8 @@ import CustomButton from '../../components/custom/CustomButton';
 import {ethers} from "ethers";
 import { useEthersProvider } from '../../Context/EtherAdapterProvider';
 import { useEthersSigner} from '../../Context/EtherAdapterSigner';
+import { ABIDATAS, contractAddress } from '../../Context/abis/LaunchpadABI';
+
 // import {ethers} from 'ethers';
 
 //   import {
@@ -23,14 +25,7 @@ import { useEthersSigner} from '../../Context/EtherAdapterSigner';
 
 
 
-interface ABIDATA {
-  abi: any[]; // Replace 'any' with the actual type of the ABI array if known
-  [key: string]: any; // This line allows any string to be used as a key
-}
-interface IContract {
-  buyTokens: (options: { value: ethers.BigNumber }) => Promise<ethers.ContractTransaction>;
-  // Add other methods of your contract here if needed
-}
+
 const BuyToken = ({isModal= false}:{isModal?:boolean}) => {
   const classes = clx('');
 // const {contract,  InitializedContract, NumberToEther, inputAmount, setInputAmount} = useContext(launchProvider);
@@ -39,572 +34,557 @@ const BuyToken = ({isModal= false}:{isModal?:boolean}) => {
 const [inputAmount, setInputAmount] = useState('');
 // const [contract, setContract] = useState<IContract>();
 const provider = useEthersProvider();
-const signer: Promise<ethers.providers.JsonRpcSigner | undefined> = useEthersSigner();
+const signer = useEthersSigner();
 
 // // Define an interface for your contract
 
 
 
-const ABIDATA: ABIDATA= {
-  abi: [
-      {
-          "inputs": [
-              {
-                  "internalType": "address[]",
-                  "name": "_users",
-                  "type": "address[]"
-              }
-          ],
-          "name": "addManyUsersToWhiteList",
-          "outputs": [],
-          "stateMutability": "nonpayable",
-          "type": "function"
-      },
-      {
-          "inputs": [
-              {
-                  "internalType": "address",
-                  "name": "_token",
-                  "type": "address"
-              },
-              {
-                  "internalType": "address",
-                  "name": "_projOwner",
-                  "type": "address"
-              },
-              {
-                  "internalType": "uint256",
-                  "name": "_stopTime",
-                  "type": "uint256"
-              },
-              {
-                  "internalType": "uint256",
-                  "name": "_maxBuy",
-                  "type": "uint256"
-              },
-              {
-                  "internalType": "uint256",
-                  "name": "_minBuy",
-                  "type": "uint256"
-              },
-              {
-                  "internalType": "uint256",
-                  "name": "_softcap",
-                  "type": "uint256"
-              },
-              {
-                  "internalType": "uint256",
-                  "name": "_hardcap",
-                  "type": "uint256"
-              }
-          ],
-          "stateMutability": "nonpayable",
-          "type": "constructor"
-      },
-      {
-          "inputs": [
-              {
-                  "internalType": "address",
-                  "name": "target",
-                  "type": "address"
-              }
-          ],
-          "name": "AddressEmptyCode",
-          "type": "error"
-      },
-      {
-          "inputs": [
-              {
-                  "internalType": "address",
-                  "name": "account",
-                  "type": "address"
-              }
-          ],
-          "name": "AddressInsufficientBalance",
-          "type": "error"
-      },
-      {
-          "inputs": [
-              {
-                  "internalType": "uint256",
-                  "name": "_amount",
-                  "type": "uint256"
-              }
-          ],
-          "name": "buyTokens",
-          "outputs": [],
-          "stateMutability": "payable",
-          "type": "function"
-      },
-      {
-          "inputs": [],
-          "name": "claimInit",
-          "outputs": [],
-          "stateMutability": "nonpayable",
-          "type": "function"
-      },
-      {
-          "inputs": [],
-          "name": "claimStageOne",
-          "outputs": [],
-          "stateMutability": "nonpayable",
-          "type": "function"
-      },
-      {
-          "inputs": [],
-          "name": "FailedInnerCall",
-          "type": "error"
-      },
-      {
-          "inputs": [
-              {
-                  "internalType": "address",
-                  "name": "token",
-                  "type": "address"
-              }
-          ],
-          "name": "SafeERC20FailedOperation",
-          "type": "error"
-      },
-      {
-          "inputs": [
-              {
-                  "internalType": "uint256",
-                  "name": "newMaxBUy",
-                  "type": "uint256"
-              }
-          ],
-          "name": "setMaximumBuy",
-          "outputs": [],
-          "stateMutability": "nonpayable",
-          "type": "function"
-      },
-      {
-          "inputs": [
-              {
-                  "internalType": "uint256",
-                  "name": "newMinimuBUy",
-                  "type": "uint256"
-              }
-          ],
-          "name": "setMiniumBuy",
-          "outputs": [],
-          "stateMutability": "nonpayable",
-          "type": "function"
-      },
-      {
-          "inputs": [
-              {
-                  "internalType": "address",
-                  "name": "_newAddress",
-                  "type": "address"
-              }
-          ],
-          "name": "setNewProjectOwner",
-          "outputs": [],
-          "stateMutability": "nonpayable",
-          "type": "function"
-      },
-      {
-          "inputs": [
-              {
-                  "internalType": "bool",
-                  "name": "_saleStatus",
-                  "type": "bool"
-              }
-          ],
-          "name": "setSaleStatus",
-          "outputs": [],
-          "stateMutability": "nonpayable",
-          "type": "function"
-      },
-      {
-          "inputs": [
-              {
-                  "internalType": "uint256",
-                  "name": "_newTime",
-                  "type": "uint256"
-              }
-          ],
-          "name": "setStartTime",
-          "outputs": [],
-          "stateMutability": "nonpayable",
-          "type": "function"
-      },
-      {
-          "inputs": [
-              {
-                  "internalType": "uint256",
-                  "name": "_newStopTime",
-                  "type": "uint256"
-              }
-          ],
-          "name": "setStopTime",
-          "outputs": [],
-          "stateMutability": "nonpayable",
-          "type": "function"
-      },
-      {
-          "inputs": [
-              {
-                  "internalType": "address",
-                  "name": "newAddress",
-                  "type": "address"
-              }
-          ],
-          "name": "setTokenUsedTobuySale",
-          "outputs": [],
-          "stateMutability": "nonpayable",
-          "type": "function"
-      },
-      {
-          "anonymous": false,
-          "inputs": [
-              {
-                  "indexed": true,
-                  "internalType": "address",
-                  "name": "user",
-                  "type": "address"
-              },
-              {
-                  "indexed": false,
-                  "internalType": "uint256",
-                  "name": "amount",
-                  "type": "uint256"
-              }
-          ],
-          "name": "TokensClaimed",
-          "type": "event"
-      },
-      {
-          "inputs": [
-              {
-                  "internalType": "address",
-                  "name": "",
-                  "type": "address"
-              }
-          ],
-          "name": "balances",
-          "outputs": [
-              {
-                  "internalType": "uint256",
-                  "name": "",
-                  "type": "uint256"
-              }
-          ],
-          "stateMutability": "view",
-          "type": "function"
-      },
-      {
-          "inputs": [],
-          "name": "currentWhitelistUsers",
-          "outputs": [
-              {
-                  "internalType": "uint256",
-                  "name": "",
-                  "type": "uint256"
-              }
-          ],
-          "stateMutability": "view",
-          "type": "function"
-      },
-      {
-          "inputs": [],
-          "name": "hardcap",
-          "outputs": [
-              {
-                  "internalType": "uint256",
-                  "name": "",
-                  "type": "uint256"
-              }
-          ],
-          "stateMutability": "view",
-          "type": "function"
-      },
-      {
-          "inputs": [],
-          "name": "isPublicSale",
-          "outputs": [
-              {
-                  "internalType": "bool",
-                  "name": "",
-                  "type": "bool"
-              }
-          ],
-          "stateMutability": "view",
-          "type": "function"
-      },
-      {
-          "inputs": [
-              {
-                  "internalType": "address",
-                  "name": "",
-                  "type": "address"
-              }
-          ],
-          "name": "isWhitelisted",
-          "outputs": [
-              {
-                  "internalType": "bool",
-                  "name": "",
-                  "type": "bool"
-              }
-          ],
-          "stateMutability": "view",
-          "type": "function"
-      },
-      {
-          "inputs": [],
-          "name": "maxBuyAmount",
-          "outputs": [
-              {
-                  "internalType": "uint256",
-                  "name": "",
-                  "type": "uint256"
-              }
-          ],
-          "stateMutability": "view",
-          "type": "function"
-      },
-      {
-          "inputs": [],
-          "name": "minBuyAmount",
-          "outputs": [
-              {
-                  "internalType": "uint256",
-                  "name": "",
-                  "type": "uint256"
-              }
-          ],
-          "stateMutability": "view",
-          "type": "function"
-      },
-      {
-          "inputs": [
-              {
-                  "internalType": "address",
-                  "name": "",
-                  "type": "address"
-              }
-          ],
-          "name": "nextClaimableAmount",
-          "outputs": [
-              {
-                  "internalType": "uint256",
-                  "name": "",
-                  "type": "uint256"
-              }
-          ],
-          "stateMutability": "view",
-          "type": "function"
-      },
-      {
-          "inputs": [
-              {
-                  "internalType": "address",
-                  "name": "",
-                  "type": "address"
-              }
-          ],
-          "name": "nextClaimTime",
-          "outputs": [
-              {
-                  "internalType": "uint256",
-                  "name": "",
-                  "type": "uint256"
-              }
-          ],
-          "stateMutability": "view",
-          "type": "function"
-      },
-      {
-          "inputs": [],
-          "name": "owner",
-          "outputs": [
-              {
-                  "internalType": "address",
-                  "name": "",
-                  "type": "address"
-              }
-          ],
-          "stateMutability": "view",
-          "type": "function"
-      },
-      {
-          "inputs": [],
-          "name": "projectOwner",
-          "outputs": [
-              {
-                  "internalType": "address",
-                  "name": "",
-                  "type": "address"
-              }
-          ],
-          "stateMutability": "view",
-          "type": "function"
-      },
-      {
-          "inputs": [],
-          "name": "RELEASE_PERCENTAGE",
-          "outputs": [
-              {
-                  "internalType": "uint256",
-                  "name": "",
-                  "type": "uint256"
-              }
-          ],
-          "stateMutability": "view",
-          "type": "function"
-      },
-      {
-          "inputs": [],
-          "name": "softcap",
-          "outputs": [
-              {
-                  "internalType": "uint256",
-                  "name": "",
-                  "type": "uint256"
-              }
-          ],
-          "stateMutability": "view",
-          "type": "function"
-      },
-      {
-          "inputs": [],
-          "name": "startTime",
-          "outputs": [
-              {
-                  "internalType": "uint256",
-                  "name": "",
-                  "type": "uint256"
-              }
-          ],
-          "stateMutability": "view",
-          "type": "function"
-      },
-      {
-          "inputs": [],
-          "name": "stopTime",
-          "outputs": [
-              {
-                  "internalType": "uint256",
-                  "name": "",
-                  "type": "uint256"
-              }
-          ],
-          "stateMutability": "view",
-          "type": "function"
-      },
-      {
-          "inputs": [],
-          "name": "token",
-          "outputs": [
-              {
-                  "internalType": "address",
-                  "name": "",
-                  "type": "address"
-              }
-          ],
-          "stateMutability": "view",
-          "type": "function"
-      },
-      {
-          "inputs": [],
-          "name": "totalUSDCReceivedInAllTier",
-          "outputs": [
-              {
-                  "internalType": "uint256",
-                  "name": "",
-                  "type": "uint256"
-              }
-          ],
-          "stateMutability": "view",
-          "type": "function"
-      },
-      {
-          "inputs": [
-              {
-                  "internalType": "address",
-                  "name": "",
-                  "type": "address"
-              }
-          ],
-          "name": "Users",
-          "outputs": [
-              {
-                  "internalType": "uint256",
-                  "name": "",
-                  "type": "uint256"
-              }
-          ],
-          "stateMutability": "view",
-          "type": "function"
-      },
-      {
-          "inputs": [],
-          "name": "VESTING_DURATION",
-          "outputs": [
-              {
-                  "internalType": "uint256",
-                  "name": "",
-                  "type": "uint256"
-              }
-          ],
-          "stateMutability": "view",
-          "type": "function"
-      },
-      {
-          "inputs": [],
-          "name": "WAIT_PERIOD",
-          "outputs": [
-              {
-                  "internalType": "uint256",
-                  "name": "",
-                  "type": "uint256"
-              }
-          ],
-          "stateMutability": "view",
-          "type": "function"
-      }
-    ],
+// const ABIDATA: ABIDATA= {
+//   abi: [
+// 	{
+// 		"inputs": [
+// 			{
+// 				"internalType": "address",
+// 				"name": "_token",
+// 				"type": "address"
+// 			},
+// 			{
+// 				"internalType": "address",
+// 				"name": "_projOwner",
+// 				"type": "address"
+// 			},
+// 			{
+// 				"internalType": "uint256",
+// 				"name": "_startTime",
+// 				"type": "uint256"
+// 			},
+// 			{
+// 				"internalType": "uint256",
+// 				"name": "_stopTime",
+// 				"type": "uint256"
+// 			},
+// 			{
+// 				"internalType": "uint256",
+// 				"name": "_maxBuy",
+// 				"type": "uint256"
+// 			},
+// 			{
+// 				"internalType": "uint256",
+// 				"name": "_minBuy",
+// 				"type": "uint256"
+// 			},
+// 			{
+// 				"internalType": "uint256",
+// 				"name": "_softcap",
+// 				"type": "uint256"
+// 			},
+// 			{
+// 				"internalType": "uint256",
+// 				"name": "_hardcap",
+// 				"type": "uint256"
+// 			}
+// 		],
+// 		"stateMutability": "nonpayable",
+// 		"type": "constructor"
+// 	},
+// 	{
+// 		"inputs": [
+// 			{
+// 				"internalType": "address",
+// 				"name": "target",
+// 				"type": "address"
+// 			}
+// 		],
+// 		"name": "AddressEmptyCode",
+// 		"type": "error"
+// 	},
+// 	{
+// 		"inputs": [
+// 			{
+// 				"internalType": "address",
+// 				"name": "account",
+// 				"type": "address"
+// 			}
+// 		],
+// 		"name": "AddressInsufficientBalance",
+// 		"type": "error"
+// 	},
+// 	{
+// 		"inputs": [],
+// 		"name": "FailedInnerCall",
+// 		"type": "error"
+// 	},
+// 	{
+// 		"inputs": [
+// 			{
+// 				"internalType": "address",
+// 				"name": "token",
+// 				"type": "address"
+// 			}
+// 		],
+// 		"name": "SafeERC20FailedOperation",
+// 		"type": "error"
+// 	},
+// 	{
+// 		"anonymous": false,
+// 		"inputs": [
+// 			{
+// 				"indexed": true,
+// 				"internalType": "address",
+// 				"name": "user",
+// 				"type": "address"
+// 			},
+// 			{
+// 				"indexed": false,
+// 				"internalType": "uint256",
+// 				"name": "amount",
+// 				"type": "uint256"
+// 			}
+// 		],
+// 		"name": "TokensClaimed",
+// 		"type": "event"
+// 	},
+// 	{
+// 		"inputs": [],
+// 		"name": "RELEASE_PERCENTAGE",
+// 		"outputs": [
+// 			{
+// 				"internalType": "uint256",
+// 				"name": "",
+// 				"type": "uint256"
+// 			}
+// 		],
+// 		"stateMutability": "view",
+// 		"type": "function"
+// 	},
+// 	{
+// 		"inputs": [
+// 			{
+// 				"internalType": "address",
+// 				"name": "",
+// 				"type": "address"
+// 			}
+// 		],
+// 		"name": "Users",
+// 		"outputs": [
+// 			{
+// 				"internalType": "uint256",
+// 				"name": "",
+// 				"type": "uint256"
+// 			}
+// 		],
+// 		"stateMutability": "view",
+// 		"type": "function"
+// 	},
+// 	{
+// 		"inputs": [],
+// 		"name": "VESTING_DURATION",
+// 		"outputs": [
+// 			{
+// 				"internalType": "uint256",
+// 				"name": "",
+// 				"type": "uint256"
+// 			}
+// 		],
+// 		"stateMutability": "view",
+// 		"type": "function"
+// 	},
+// 	{
+// 		"inputs": [],
+// 		"name": "WAIT_PERIOD",
+// 		"outputs": [
+// 			{
+// 				"internalType": "uint256",
+// 				"name": "",
+// 				"type": "uint256"
+// 			}
+// 		],
+// 		"stateMutability": "view",
+// 		"type": "function"
+// 	},
+// 	{
+// 		"inputs": [
+// 			{
+// 				"internalType": "address[]",
+// 				"name": "_users",
+// 				"type": "address[]"
+// 			}
+// 		],
+// 		"name": "addManyUsersToWhiteList",
+// 		"outputs": [],
+// 		"stateMutability": "nonpayable",
+// 		"type": "function"
+// 	},
+// 	{
+// 		"inputs": [
+// 			{
+// 				"internalType": "address",
+// 				"name": "",
+// 				"type": "address"
+// 			}
+// 		],
+// 		"name": "balances",
+// 		"outputs": [
+// 			{
+// 				"internalType": "uint256",
+// 				"name": "",
+// 				"type": "uint256"
+// 			}
+// 		],
+// 		"stateMutability": "view",
+// 		"type": "function"
+// 	},
+// 	{
+// 		"inputs": [
+// 			{
+// 				"internalType": "uint256",
+// 				"name": "_amount",
+// 				"type": "uint256"
+// 			}
+// 		],
+// 		"name": "buyTokens",
+// 		"outputs": [],
+// 		"stateMutability": "payable",
+// 		"type": "function"
+// 	},
+// 	{
+// 		"inputs": [],
+// 		"name": "claimInit",
+// 		"outputs": [],
+// 		"stateMutability": "nonpayable",
+// 		"type": "function"
+// 	},
+// 	{
+// 		"inputs": [],
+// 		"name": "claimStageOne",
+// 		"outputs": [],
+// 		"stateMutability": "nonpayable",
+// 		"type": "function"
+// 	},
+// 	{
+// 		"inputs": [],
+// 		"name": "currentWhitelistUsers",
+// 		"outputs": [
+// 			{
+// 				"internalType": "uint256",
+// 				"name": "",
+// 				"type": "uint256"
+// 			}
+// 		],
+// 		"stateMutability": "view",
+// 		"type": "function"
+// 	},
+// 	{
+// 		"inputs": [],
+// 		"name": "hardcap",
+// 		"outputs": [
+// 			{
+// 				"internalType": "uint256",
+// 				"name": "",
+// 				"type": "uint256"
+// 			}
+// 		],
+// 		"stateMutability": "view",
+// 		"type": "function"
+// 	},
+// 	{
+// 		"inputs": [],
+// 		"name": "isPublicSale",
+// 		"outputs": [
+// 			{
+// 				"internalType": "bool",
+// 				"name": "",
+// 				"type": "bool"
+// 			}
+// 		],
+// 		"stateMutability": "view",
+// 		"type": "function"
+// 	},
+// 	{
+// 		"inputs": [
+// 			{
+// 				"internalType": "address",
+// 				"name": "",
+// 				"type": "address"
+// 			}
+// 		],
+// 		"name": "isWhitelisted",
+// 		"outputs": [
+// 			{
+// 				"internalType": "bool",
+// 				"name": "",
+// 				"type": "bool"
+// 			}
+// 		],
+// 		"stateMutability": "view",
+// 		"type": "function"
+// 	},
+// 	{
+// 		"inputs": [],
+// 		"name": "maxBuyAmount",
+// 		"outputs": [
+// 			{
+// 				"internalType": "uint256",
+// 				"name": "",
+// 				"type": "uint256"
+// 			}
+// 		],
+// 		"stateMutability": "view",
+// 		"type": "function"
+// 	},
+// 	{
+// 		"inputs": [],
+// 		"name": "minBuyAmount",
+// 		"outputs": [
+// 			{
+// 				"internalType": "uint256",
+// 				"name": "",
+// 				"type": "uint256"
+// 			}
+// 		],
+// 		"stateMutability": "view",
+// 		"type": "function"
+// 	},
+// 	{
+// 		"inputs": [
+// 			{
+// 				"internalType": "address",
+// 				"name": "",
+// 				"type": "address"
+// 			}
+// 		],
+// 		"name": "nextClaimTime",
+// 		"outputs": [
+// 			{
+// 				"internalType": "uint256",
+// 				"name": "",
+// 				"type": "uint256"
+// 			}
+// 		],
+// 		"stateMutability": "view",
+// 		"type": "function"
+// 	},
+// 	{
+// 		"inputs": [
+// 			{
+// 				"internalType": "address",
+// 				"name": "",
+// 				"type": "address"
+// 			}
+// 		],
+// 		"name": "nextClaimableAmount",
+// 		"outputs": [
+// 			{
+// 				"internalType": "uint256",
+// 				"name": "",
+// 				"type": "uint256"
+// 			}
+// 		],
+// 		"stateMutability": "view",
+// 		"type": "function"
+// 	},
+// 	{
+// 		"inputs": [],
+// 		"name": "owner",
+// 		"outputs": [
+// 			{
+// 				"internalType": "address",
+// 				"name": "",
+// 				"type": "address"
+// 			}
+// 		],
+// 		"stateMutability": "view",
+// 		"type": "function"
+// 	},
+// 	{
+// 		"inputs": [],
+// 		"name": "projectOwner",
+// 		"outputs": [
+// 			{
+// 				"internalType": "address",
+// 				"name": "",
+// 				"type": "address"
+// 			}
+// 		],
+// 		"stateMutability": "view",
+// 		"type": "function"
+// 	},
+// 	{
+// 		"inputs": [
+// 			{
+// 				"internalType": "uint256",
+// 				"name": "newMaxBUy",
+// 				"type": "uint256"
+// 			}
+// 		],
+// 		"name": "setMaximumBuy",
+// 		"outputs": [],
+// 		"stateMutability": "nonpayable",
+// 		"type": "function"
+// 	},
+// 	{
+// 		"inputs": [
+// 			{
+// 				"internalType": "uint256",
+// 				"name": "newMinimuBUy",
+// 				"type": "uint256"
+// 			}
+// 		],
+// 		"name": "setMiniumBuy",
+// 		"outputs": [],
+// 		"stateMutability": "nonpayable",
+// 		"type": "function"
+// 	},
+// 	{
+// 		"inputs": [
+// 			{
+// 				"internalType": "address",
+// 				"name": "_newAddress",
+// 				"type": "address"
+// 			}
+// 		],
+// 		"name": "setNewProjectOwner",
+// 		"outputs": [],
+// 		"stateMutability": "nonpayable",
+// 		"type": "function"
+// 	},
+// 	{
+// 		"inputs": [
+// 			{
+// 				"internalType": "bool",
+// 				"name": "_saleStatus",
+// 				"type": "bool"
+// 			}
+// 		],
+// 		"name": "setSaleStatus",
+// 		"outputs": [],
+// 		"stateMutability": "nonpayable",
+// 		"type": "function"
+// 	},
+// 	{
+// 		"inputs": [
+// 			{
+// 				"internalType": "uint256",
+// 				"name": "_newTime",
+// 				"type": "uint256"
+// 			}
+// 		],
+// 		"name": "setStartTime",
+// 		"outputs": [],
+// 		"stateMutability": "nonpayable",
+// 		"type": "function"
+// 	},
+// 	{
+// 		"inputs": [
+// 			{
+// 				"internalType": "uint256",
+// 				"name": "_newStopTime",
+// 				"type": "uint256"
+// 			}
+// 		],
+// 		"name": "setStopTime",
+// 		"outputs": [],
+// 		"stateMutability": "nonpayable",
+// 		"type": "function"
+// 	},
+// 	{
+// 		"inputs": [
+// 			{
+// 				"internalType": "address",
+// 				"name": "newToken",
+// 				"type": "address"
+// 			}
+// 		],
+// 		"name": "setTokenTobuyAddress",
+// 		"outputs": [],
+// 		"stateMutability": "nonpayable",
+// 		"type": "function"
+// 	},
+// 	{
+// 		"inputs": [],
+// 		"name": "softcap",
+// 		"outputs": [
+// 			{
+// 				"internalType": "uint256",
+// 				"name": "",
+// 				"type": "uint256"
+// 			}
+// 		],
+// 		"stateMutability": "view",
+// 		"type": "function"
+// 	},
+// 	{
+// 		"inputs": [],
+// 		"name": "startTime",
+// 		"outputs": [
+// 			{
+// 				"internalType": "uint256",
+// 				"name": "",
+// 				"type": "uint256"
+// 			}
+// 		],
+// 		"stateMutability": "view",
+// 		"type": "function"
+// 	},
+// 	{
+// 		"inputs": [],
+// 		"name": "stopTime",
+// 		"outputs": [
+// 			{
+// 				"internalType": "uint256",
+// 				"name": "",
+// 				"type": "uint256"
+// 			}
+// 		],
+// 		"stateMutability": "view",
+// 		"type": "function"
+// 	},
+// 	{
+// 		"inputs": [],
+// 		"name": "token",
+// 		"outputs": [
+// 			{
+// 				"internalType": "address",
+// 				"name": "",
+// 				"type": "address"
+// 			}
+// 		],
+// 		"stateMutability": "view",
+// 		"type": "function"
+// 	},
+// 	{
+// 		"inputs": [],
+// 		"name": "totalUSDCReceivedInAllTier",
+// 		"outputs": [
+// 			{
+// 				"internalType": "uint256",
+// 				"name": "",
+// 				"type": "uint256"
+// 			}
+// 		],
+// 		"stateMutability": "view",
+// 		"type": "function"
+// 	},
+// 	{
+// 		"stateMutability": "payable",
+// 		"type": "receive"
+// 	}
+// ],
     
 
-};
+// };
 
-const NumberToEther = (number: string) => {
-  // Use ethers.utils.parseUnits for conversion
-  return ethers.utils.parseEther(number.toString());
+// const NumberToEther = (number: string) => {
+//   // Use ethers.utils.parseUnits for conversion
+//   return ethers.utils.parseEther(number.toString());
 
-};
-
-
-
-const contractAddress = "0xFdF0B0335a94aa1F735293eaa1925d864C824Fd6";
-const contractABI = ABIDATA.abi;
+// };
 
 
-// // const contractProvider =  new ethers.Contract(
-// //   contractAddress, 
-// //   contractABI,
-// //   provider
-   
-// // )
-// const InitializedContract = async() => {
-//   const contractInstance: any = new ethers.Contract(
-//     contractAddress, 
-//     contractABI,
-//      await signer
-     
-//   );
-//   // setContract(contractInstance)
-//   // return contractInstance;
-// }
-// useEffect( () => {
-  
-//   InitializedContract();
 
-// }, [])
-
+// const contractAddress = "0x4201ef9b61fAE4220F6b98c423C8D0A58559c0E2";
+const contractABI = ABIDATAS.abi;
 
 
 const buyToken = async () => {
@@ -617,11 +597,17 @@ const buyToken = async () => {
        
     );
     console.log(contractInstance);
-    // if (contract) {
-      const tx = await contractInstance.buyTokens(NumberToEther(inputAmount));
-      console.log(tx);
-      const receipt = await tx.wait();
-      console.log("Transaction Successful:", receipt);
+
+    const amountBN = ethers.utils.parseEther(inputAmount.toString());
+    const tx = await contractInstance.buyTokens(amountBN, {
+        value: amountBN, // Sending ETH along with the transaction
+      });
+
+      // Wait for the transaction to be mined
+      await tx.wait();
+
+      // Update state or show success message
+      console.log('Transaction successful!');
     // }
 
   }catch (error) {

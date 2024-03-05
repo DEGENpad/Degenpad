@@ -47,7 +47,7 @@ export default InvestorCard;
       <section className='flex justify-between items-center py-2  '>
         <div className='flex gap-2 items-center'>
           <div className='h-10 w-10 bg-slate-300 rounded-full'></div>
-          <Text as='span' className='text-red-500'>
+          <Text as='span' className='text-blue-500'>
             {address}
           </Text>
         </div>
