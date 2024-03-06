@@ -8,7 +8,7 @@ import { GiHamburgerMenu } from 'react-icons/gi';
 import { CgMenuRight } from "react-icons/cg";
 import { MdCancel } from 'react-icons/md';
 import { ConnectButton } from '@rainbow-me/rainbowkit';
-
+import {useMediaQuery} from 'react-responsive';
 const NavbarLink = ({ closeMenu }:any) => {
   const tabs = [
     {
@@ -51,14 +51,17 @@ const Header = () => {
 
   const classes = clx('w-[93%] lg:w-[90%] mx-auto');
   const [toggle, setToggle] = React.useState<boolean>(false);
+  const isMobile = useMediaQuery({ maxWidth: 768 });
 
   const closeMenu = () => {
     setToggle(false);
   };
 
   return (
-    <section style={{backgroundColor: "rgb(230, 232, 253)" }} className ="flex-justify-center items-center py-5">
-    <header className={`flex justify-between items-center  ${classes}`}>
+    // <section style={{backgroundColor: "rgb(230, 232, 253)" }} className ="flex-justify-center items-center py-5">
+    <section style={{backgroundColor: "rgb(230, 232, 253)" }} className="flex justify-center items-center py-5">
+    <header className={`flex justify-between items-center ${isMobile ? 'p-2' : 'p-4'} ${classes}`}>
+    {/* <header className={`flex justify-between items-center  ${classes}`}> */}
       
       <Link to={'/'}>
         <img src={IMG.Logo} alt='Logo' className='object-cover h-[50px]' />
