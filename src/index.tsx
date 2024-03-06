@@ -22,6 +22,7 @@ import '@rainbow-me/rainbowkit/styles.css';
 import {
   getDefaultConfig,
   RainbowKitProvider,
+  darkTheme
 } from '@rainbow-me/rainbowkit';
 import { WagmiProvider } from 'wagmi';
 import {
@@ -69,7 +70,17 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
        <WagmiProvider config={config}>
       <QueryClientProvider client={queryClient}>
-        <RainbowKitProvider>
+        <RainbowKitProvider
+        theme={darkTheme({
+      accentColor: '#0119ef',
+      accentColorForeground: 'white',
+      borderRadius: 'small',
+      fontStack: 'system',
+      overlayBlur: 'small',
+    })}
+
+       
+        >
      {/* <LaunchContext> */}
        <RouterProvider router={router} />
      {/* </LaunchContext> */}
