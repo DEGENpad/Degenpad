@@ -8,7 +8,7 @@ import { GiHamburgerMenu } from 'react-icons/gi';
 import { CgMenuRight } from "react-icons/cg";
 import { MdCancel } from 'react-icons/md';
 import { ConnectButton } from '@rainbow-me/rainbowkit';
-import {useMediaQuery} from 'react-responsive';
+// import {useMediaQuery} from 'react-responsive';
 const NavbarLink = ({ closeMenu }:any) => {
   const tabs = [
     {
@@ -51,7 +51,7 @@ const Header = () => {
 
   const classes = clx('w-[93%] lg:w-[90%] mx-auto');
   const [toggle, setToggle] = React.useState<boolean>(false);
-  const isMobile = useMediaQuery({ maxWidth: 768 });
+  // const isMobile = useMediaQuery({ maxWidth: 768 });
 
   const closeMenu = () => {
     setToggle(false);
@@ -59,8 +59,8 @@ const Header = () => {
 
   return (
     // <section style={{backgroundColor: "rgb(230, 232, 253)" }} className ="flex-justify-center items-center py-5">
-    <section style={{backgroundColor: "rgb(230, 232, 253)" }} className="flex justify-center items-center py-5">
-    <header className={`flex justify-between items-center ${isMobile ? 'p-2' : 'p-4'} ${classes}`}>
+    <section style={{backgroundColor: "rgb(230, 232, 253)" }} className="flex justify-center items-center py-4">
+    <header className={`flex justify-between items-center  ${classes}`}>
     {/* <header className={`flex justify-between items-center  ${classes}`}> */}
       
       <Link to={'/'}>
@@ -76,7 +76,7 @@ const Header = () => {
 
       <div className='flex gap-3 items-center'>
         
-       <Link className='hidden sm:block bg-normal-100 font-sm text-white-100 border rounded-lg py-2 px-3' to="/tier">Buy OBJ<span className='ml-4'>$0.003</span></Link>
+       <Link className='hidden md:block bg-normal-100 font-sm text-white-100 border rounded-lg py-2 px-3' to="/tier">Buy OBJ<span className='ml-4'>$0.003</span></Link>
         <ConnectButton  />
 
         <div className='p-2 text-blue-500 md:hidden relative' onClick={() => setToggle(!toggle)}>
