@@ -16,6 +16,7 @@ interface ParticipateCardProps {
     projectDescription: string;
     targetBalance: string;
     status: string;
+    tag: string;
  };
 }
 
@@ -26,7 +27,7 @@ const ParticipateCard: React.FC<ParticipateCardProps> = ({
  allPool,
 }) => {
 //  const { logo, dateOfCompletion, tokenName, SLMAmount, tokenPrice, maximumPurchase, projectDescription, targetBalance, status } = allPool || {};
-  const { logo, dateOfCompletion, tokenName, SLMAmount, tokenPrice, projectDescription, targetBalance, status } = allPool || {};
+  const { logo, dateOfCompletion, tokenName, SLMAmount, tokenPrice, projectDescription, targetBalance, status ,tag} = allPool || {};
 
  return (
     <section className="w-full border border-3 border-[#D9D9D9] rounded-2xl shadow-[0px 0px 5px 0px #00000040] flex flex-col h-full">
@@ -36,13 +37,13 @@ const ParticipateCard: React.FC<ParticipateCardProps> = ({
         <img
         src={logo}
         alt={`Logo for ${tokenName}`}
-        className="w-[400px] h-[150px] md:[200px] object-cover p-0"
+        className="w-full h-[150px] rounded-t-md object-cover p-0"
         // style={{ width: '150px', height: '150px', objectFit: 'cover' }}
         />
         )}
         </div>
       <div className="text-center h-8 bg-dark-400 w-full text-white-100 py-1">
-        Ends in: {dateOfCompletion}
+        {tag?.toUpperCase()} : {dateOfCompletion}
       </div>
       <div className="p-6 flex flex-col flex-grow">
         <div className="flex items-center gap-5">
@@ -90,10 +91,12 @@ const ParticipateCard: React.FC<ParticipateCardProps> = ({
       </div>
 
       <div className="px-3 pb-3 flex justify-center">
+
         <CustomButton
-          label={label}
+            disabled={tag === 'completed'}
+          label={tag === 'completed' ?'COMPLETED':label}
           onClick={onclick}
-          className="rounded-full text-whiteDark-100 w-full px-24 py-[10px] bg-gradient-to-t from-normal-100 to-dark-400 hover:bg--100"
+          className={`rounded-full text-whiteDark-100 w-full px-24 py-[10px] bg-gradient-to-t from-normal-100 to-dark-400 hover:bg--100 ${tag === 'completed' && ' bg-gradient-to-t from-whiteDark-400 '}`}
         />
       </div>
     </section>

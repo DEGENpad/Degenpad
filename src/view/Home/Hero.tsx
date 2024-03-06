@@ -21,9 +21,9 @@ const Hero = () => {
       case 2:
         return <All more={true} schedule='Ongoing in: 1d : 22h : 33m : 5s'/>;
       case 3:
-        return <All more={true} schedule='Upcoming in: 1d : 22h : 33m : 5s'/>;
+        return <Upcoming more={true} schedule='Upcoming in: 1d : 22h : 33m : 5s'/>;
       case 4:
-        return <All more={true} schedule='Ended: 1d : 22h : 33m : 5s'/>;
+        return <Ended more={true} schedule='Ended: 1d : 22h : 33m : 5s'/>;
       default:
         return <All more={true}/>;
     }

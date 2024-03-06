@@ -67,24 +67,14 @@ const Header = () => {
         <NavbarLink closeMenu={closeMenu} />
       </div>
        
-       <div className='flex gap-0 md:gap-0'>
-       <Link style={{background: "#0119EF", fontSize: "14px", "color": "white", padding:"15px 20px", borderRadius: "5px"}}  to="/tier">Buy OBJ<span style={{marginLeft: "30px"}}>$0.003</span></Link>
-       </div>
+       
       
 
 
-      <div className='flex gap-3 md:gap-0'>
-        {/* <Text
-          as='h1'
-          weight='medium'
-          className='bg-light-300 p-2 rounded-md hover:bg-light-200'
-          onclick={() => {
-            setIsWallet(!isWallet);
-          }}
-        >
-          {isWallet ? 'ox2' : 'Connect Wallet'}
-        </Text> */}
-        <ConnectButton />
+      <div className='flex gap-3 items-center'>
+        
+       <Link className='hidden sm:block bg-normal-100 font-sm text-white-100 border rounded-lg py-2 px-3' to="/tier">Buy OBJ<span className='ml-4'>$0.003</span></Link>
+        <ConnectButton  />
 
         <div className='p-2 text-blue-500 md:hidden relative' onClick={() => setToggle(!toggle)}>
           {
