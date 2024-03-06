@@ -10,3 +10,7 @@ export {default as part5} from './part5.svg'
 export {default as part6} from './part6.svg'
 export {default as part7} from './part7.svg'
 export {default as news} from './news.svg'
+export {default as eth} from './eth.webp'
+export {default as bnb} from './bnb.png'
+export {default as bnbb} from './bnb1.png'
+
