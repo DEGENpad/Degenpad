@@ -11,7 +11,8 @@ const SingleTier = () => {
   return (
     <div>
         
-        SingleTier{id}
+        {/* SingleTier{id} */}
+        {id}
      <Board/>
     <WhiteListCard  singleTier={singleTier}/>    
     </div>

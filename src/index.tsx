@@ -78,8 +78,6 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
       fontStack: 'system',
       overlayBlur: 'small',
     })}
-
-       
         >
      {/* <LaunchContext> */}
        <RouterProvider router={router} />
